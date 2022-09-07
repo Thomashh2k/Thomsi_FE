@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import {createPinia} from "pinia"
 import {useUserInfoStore} from './store'
-
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { ApiManagerPlugin } from './ApiManagers'
 import { apiManagerOptions } from './ApiManagers/types/apiOptions'
 import { BootstrapVue3  } from 'bootstrap-vue-3'
@@ -23,6 +23,7 @@ const apiOptions: apiManagerOptions = {
 
 const app = createApp(App)
 const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate)
 app.use(Quasar, quasarUserOptions)
 app.use(pinia)
 app.use(router)

@@ -8,11 +8,12 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item to="/controlpanel/language">Create Lang</b-nav-item>
-            <b-nav-item to="/controlpanel/pages">Create Page</b-nav-item>
-            <b-nav-item to="/controlpanel/routes">Create Form</b-nav-item>
+            <b-nav-item to="/controlpanel/language">Languages</b-nav-item>
+            <b-nav-item to="/controlpanel/pages">Pages</b-nav-item>
+            <b-nav-item to="/controlpanel/forms">Custom Forms</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
+        <b-button variant="danger" @click="logout">Logout</b-button>
       </b-navbar>
     </b-col>
   </b-row>
@@ -21,11 +22,24 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import {useUserInfoStore} from "@/store"
 
 export default defineComponent({
   name: 'controlPanel',
   components: {
 
   },
+  setup(){
+    const userInfoStore = useUserInfoStore();
+    return { userInfoStore }
+  },
+  methods:{
+    logout(){
+      this.userInfoStore.setToken("");
+      this.userInfoStore.setExpiration(null);
+      this.userInfoStore.setUser(null);
+      this.$router.push("/");
+    }
+  }
 });
 </script>

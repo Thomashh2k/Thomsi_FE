@@ -43,9 +43,6 @@ export default defineComponent({
   components: {
 
   },
-  //setup() {
-  //  const userInfoStore = useUserInfoStore()
-  //},
   data() {
     return {
       form: {

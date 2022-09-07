@@ -27,11 +27,34 @@ export class authenticationRoute {
     }
 
     public async login(data: loginPL): Promise<boolean> {
-        const resp = await this.axiosInstance.post('/authentication/login ', data);
+        try {
 
+            const resp = await this.axiosInstance.post('/authentication/login ', data);
+            if(resp.status == 200) {
+                this.userInfoStore.setToken(resp.data.token);
+                this.userInfoStore.setExpiration(resp.data.expiration);
+                this.axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + this.userInfoStore.getToken;
+                return true;
+             }
+             else if(resp.status == 401){
+                console.log("Cred invalid")
+                return false;
+             }
+        }
+        catch(ex){
+            if(ex.code == 'ERR_NETWORK'){
+                console.log("Backend temporaily unavailable")
+            }
+        }
+    }
+
+    public async logout(): Promise<boolean> {
+        this.axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + this.userInfoStore.getToken;
+        const resp = await this.axiosInstance.delete('/authentication/logout');
         if(resp.status == 200) {
-           this.userInfoStore.setToken(resp.data.token);
-           this.userInfoStore.setExpiration(resp.data.expiration);
+           this.userInfoStore.setToken("");
+           this.userInfoStore.setExpiration(null);
+           this.axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + this.userInfoStore.getToken;
            return true;
         }
         else {

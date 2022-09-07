@@ -24,16 +24,22 @@ import { defineComponent } from 'vue';
 import { postLanguagePL } from '@/payloads/postLanguagePL';
 
 export default defineComponent({
-  name: 'createRouteForm',
+  name: 'LanguageForm',
   components: {
 
   },
-  created() {
-    console.log(this)
+  async created() {
+    if(this.form.id != undefined){
+      let data = await this.$apiManager.lang.getSingleLanguageByID(this.form.id);
+      if(data != undefined){
+        this.form = data
+      }
+    }
   },
   data() {
     return {
       form: {
+        id: this.$route.params.id, // This id is only used when a lang is edited
         languageName: '',
         languageIdentifier: ''
       } as postLanguagePL
@@ -42,7 +48,18 @@ export default defineComponent({
   methods: {
     async onSubmit(event: any) {
       event.preventDefault()
-      await this.$apiManager.lang.postLanguage(this.form);
+      if(this.form.id != undefined) {
+        //Updates a lang
+        let data = await this.$apiManager.lang.updateLanguage(this.form);
+        if(data != undefined)
+          this.$router.go(-1);
+      }
+      else{
+        // Creates a lang
+        let data = await this.$apiManager.lang.postLanguage(this.form);
+        if(data != undefined)
+         this.$router.go(-1);
+      }
 
     },
     onReset(event: any) {
