@@ -35,8 +35,13 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "language/create",
-        name: 'language',
-        component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/CreateLanguageForm.vue'),
+        name: 'createLanguage',
+        component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/LanguageForm.vue'),
+      },
+      {
+        path: "language/edit/:id",
+        name: 'editLanguage',
+        component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/LanguageForm.vue'),
       },
       {
         path: "pages",
@@ -46,7 +51,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "pages/create",
         name: 'createPages',
-        component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/CreatePageForm.vue'),
+        component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/PageForm.vue'),
+      },
+      {
+        path: "pages/edit/:id",
+        name: 'editPages',
+        component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/PageForm.vue'),
       },
     ]
   }

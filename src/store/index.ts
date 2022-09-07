@@ -22,4 +22,8 @@ export const useUserInfoStore = defineStore('userInfo', {
       this.expiration = expiration
     },
   },
+  persist: {
+    storage: sessionStorage,
+    paths: ['user', 'token', 'expiration'],
+  },
 })

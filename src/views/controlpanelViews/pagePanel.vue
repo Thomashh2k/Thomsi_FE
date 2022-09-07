@@ -13,6 +13,10 @@
           {{( props.row.lang.languageIdentifier as page)}}
           </q-td>
         </template>
+        <template v-slot:body-cell-actions="props">
+           <b-button class="leftActionBtn" variant="warning" :id="props"><DeleteIcon fillColor="white"/></b-button>
+           <b-button variant="danger"><LeadPencil/></b-button>
+        </template>
         </q-table>
     </b-col>
     <b-col></b-col>
@@ -22,11 +26,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { page } from '@/dbTables';
+import DeleteIcon from 'vue-material-design-icons/Delete.vue';
+import LeadPencil from 'vue-material-design-icons/LeadPencil.vue';
 
 export default defineComponent({
   name: 'pagePanel',
   components: {
-
+    DeleteIcon,
+    LeadPencil
   },
   async beforeMount() {
     let data = await this.$apiManager.page.getPagesWithoutBody(1, 1, 10);

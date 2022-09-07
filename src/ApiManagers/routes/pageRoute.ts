@@ -1,16 +1,19 @@
 import { AxiosInstance } from "axios";
 import { postPagePL } from "@/payloads/postPagePL";
 import { page } from "@/dbTables";
+import { useUserInfoStore } from "@/store";
 
 export class pageRoute {
 
     private axiosInstance: AxiosInstance;
+    private userInfoStore = useUserInfoStore();
 
     public constructor(axios: AxiosInstance) {
         this.axiosInstance = axios;
     }
 
     public async postPage(data: postPagePL): Promise<boolean> {
+        this.axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + this.userInfoStore.getToken;
         const resp = await this.axiosInstance.post('/pages', data);
 
         if(resp.status == 200) {
