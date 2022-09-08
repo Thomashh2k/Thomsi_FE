@@ -13,6 +13,15 @@
             ></b-form-input>
           </b-form-group>
           <b-form-group>
+          <b-form-input
+            id="pageRouteInput"
+            v-model="payload.route"
+            type="text"
+            placeholder="/page"
+            required
+          ></b-form-input>
+          </b-form-group>
+          <b-form-group>
             <b-form-select v-model="payload.langId" :options="languages"></b-form-select>
           </b-form-group>
 
@@ -56,11 +65,20 @@ export default defineComponent({
   components: {
     MonacoEditor
   },
-  async beforeMount() {
+  async created() {
+    debugger;
     let data = await this.$apiManager.lang.getLanguage(1, 1, 5)
-    for(var i = 0; i <= data.length; i++) {
+    for(var i = 0; i < data.length; i++) {
       this.languages.push({text: data[i].languageIdentifier, value: data[i].id, disabled: false});
     }
+
+    if(this.payload.id != undefined){
+      let data = await this.$apiManager.page.getSinglePageByID(this.payload.id);
+      if(data != undefined){
+        this.payload = data
+      }
+    }
+    
   },
   mounted() {
     this.editorWidth = this.$refs.editorCol.clientHeight;
@@ -74,7 +92,9 @@ export default defineComponent({
       isMonacoEditor: true,
       languages: [],
       payload: {
+        id: this.$route.params.id, // This id is only used when a page is edited
         title: '',
+        route: '',
         body: '',
         langId: ''
       } as postPagePL
@@ -83,8 +103,19 @@ export default defineComponent({
   methods: {
     async onSubmit(event: any) {
       event.preventDefault()
-      await this.$apiManager.page.postPage(this.payload);
-
+      debugger;
+      if(this.payload.id != undefined) {
+        //Updates a lang
+        let data = await this.$apiManager.page.updatePage(this.payload);
+        if(data != undefined)
+          this.$router.go(-1);
+      }
+      else{
+        // Creates a lang
+        let data = await this.$apiManager.page.postPage(this.payload);
+        if(data != undefined)
+          this.$router.go(-1);
+      }
     },
     onReset(event: any) {
       event.preventDefault()

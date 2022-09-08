@@ -13,7 +13,7 @@ export class languagesRoute {
         this.axiosInstance = axios;
     }
 
-    public async postLanguage(data: postLanguagePL): Promise<boolean> {
+    public async postLanguage(data: lang): Promise<boolean> {
         this.axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + this.userInfoStore.getToken;
         const resp = await this.axiosInstance.post('/lang', data);
 
@@ -46,6 +46,7 @@ export class languagesRoute {
     }
 
     public async updateLanguage(data: postLanguagePL): Promise<lang> {
+        this.axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + this.userInfoStore.getToken;
         const resp = await this.axiosInstance.put('/lang/' + data.id, data);
         if(resp.status == 200) {
             return resp.data;
@@ -56,6 +57,7 @@ export class languagesRoute {
     }
 
     public async deleteLanguageById(id: string): Promise<boolean> {
+        this.axiosInstance.defaults.headers.common["Authorization"] = "Bearer " + this.userInfoStore.getToken;
         const resp = await this.axiosInstance.delete('/lang/' + id);
         if(resp.status == 200) {
             return resp.data.deleted;

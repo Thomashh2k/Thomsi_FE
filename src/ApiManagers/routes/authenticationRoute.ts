@@ -2,6 +2,7 @@ import { registerUserPL } from "@/payloads/registerUserPL";
 import { loginPL } from "@/payloads/loginPL";
 import { AxiosInstance } from "axios";
 import { useUserInfoStore } from '@/store'
+import { Store } from "pinia";
 
 
 export class authenticationRoute {
