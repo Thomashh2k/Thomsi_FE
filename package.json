@@ -28,6 +28,7 @@
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
+    "jest-mock-axios": "^4.7.0-beta",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
