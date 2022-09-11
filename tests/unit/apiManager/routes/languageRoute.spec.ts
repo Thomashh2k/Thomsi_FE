@@ -1,48 +1,45 @@
 import { languagesRoute } from "@/ApiManagers/routes/languagesRoute";
-import { createTestingPinia } from '@pinia/testing'
+import { createTestingPinia } from '@pinia/testing';
 import { lang } from "@/dbTables";
 import useUserInfoStore from "@/store";
 import { AxiosError } from "axios";
 
 const axios = require("axios");
-const pinia = createTestingPinia()
+const pinia = createTestingPinia();
 jest.mock('axios');
 
-const languageRouteInstance = new languagesRoute(axios)
+const languageRouteInstance = new languagesRoute(axios);
 languageRouteInstance["userInfoStore"] = useUserInfoStore(pinia);
 
 describe("languageRoute.ts", () =>{
     describe("postLanguage", () =>{
+
+        let mockedDataPL = {
+            id: undefined,
+            languageName: "German",
+            languageIdentifier: "de-DE"
+        } as lang;
+
         test('Successfuly post gives a boolean true', async () => {
             axios.post.mockResolvedValue({
                 status: 200
             });
-            let testDataPL = {
-                id: undefined,
-                languageName: "German",
-                languageIdentifier: "de-DE"
-            } as lang
         
-            expect(await languageRouteInstance.postLanguage(testDataPL)).toBe(true);
+            expect(await languageRouteInstance.postLanguage(mockedDataPL)).toBe(true);
         });
         
         test('Failed post gives a boolean false on HTTP 401', async () => {
             let mockedErr = new AxiosError();
             mockedErr.code = "ERR_BAD_REQUEST"; 
     
-            axios.post.mockRejectedValueOnce(mockedErr)
-           
-            var testDataPL = {
-                id: undefined,
-                languageName: "German",
-                languageIdentifier: "de-DE"
-            } as lang
+            axios.post.mockRejectedValueOnce(mockedErr);
 
-            expect(await languageRouteInstance.postLanguage(testDataPL)).toBe(mockedErr);
+            expect(await languageRouteInstance.postLanguage(mockedDataPL)).toBe(mockedErr);
         });
     })
     describe("getLanguage", () => {
         test('Successfuly gets a list of languages', async () => {
+
             let mockedRespData = [
                 {
                     id: "{GUID}",
@@ -79,62 +76,59 @@ describe("languageRoute.ts", () =>{
         
             let mockedErr = new AxiosError();
             mockedErr.code = "ERR_BAD_REQUEST"; 
-            axios.get.mockRejectedValueOnce(mockedErr)
+            axios.get.mockRejectedValueOnce(mockedErr);
 
             expect(await languageRouteInstance.getLanguage(1, 1, 10)).toBe(mockedErr);
         });
-    })
+    });
     describe("getLanguageById", () => {
 
         test("Successfully get a language by id", async () => {
 
-            let mockedRes = {
+            let mockedRespData = {
                 id: "GUID",
                 languageName: "German",
                 languageIdentifier: "de-DE"
-            };
+            } as lang;
 
             axios.get.mockResolvedValue({
                 status: 200,
-                data: mockedRes 
+                data: mockedRespData 
             });
-            expect(await languageRouteInstance.getSingleLanguageByID("GUID")).toBe(mockedRes)
+            expect(await languageRouteInstance.getSingleLanguageByID("GUID")).toBe(mockedRespData);
         });
 
         test('Failed get a languages by id on HTTP 400', async () => {
         
             let mockedErr = new AxiosError();
             mockedErr.code = "ERR_BAD_REQUEST"; 
-            axios.get.mockRejectedValueOnce(mockedErr)
+            axios.get.mockRejectedValueOnce(mockedErr);
             expect(await languageRouteInstance.getSingleLanguageByID("GUID")).toBe(mockedErr);
-        })
+        });
 
-    })
+    });
     describe("updateLanguage", () => {
+
+        let mockedDataPL = {
+            id: "GUID",
+            languageName: "German",
+            languageIdentifier: "de-DE"
+        } as lang;
+
         test("Successfully update a language", async () => {
-            let mockedPL = {
-                id: "GUID",
-                languageName: "German",
-                languageIdentifier: "de-DE"
-            };
             axios.put.mockResolvedValue({
                 status: 200,
-                data: mockedPL
+                data: mockedDataPL
             });
-            expect(await languageRouteInstance.updateLanguage(mockedPL)).toBe(true)
+            expect(await languageRouteInstance.updateLanguage(mockedDataPL)).toBe(true)
         });
 
         test('Failed update a language on HTTP 400', async () => {
-            let mockedPL = {
-                id: "GUID",
-                languageName: "German",
-                languageIdentifier: "de-DE"
-            };
             let mockedErr = new AxiosError();
             mockedErr.code = "ERR_BAD_REQUEST"; 
-            axios.put.mockRejectedValueOnce(mockedErr)
-            expect(await languageRouteInstance.updateLanguage(mockedPL)).toBe(mockedErr);
-        })
+            axios.put.mockRejectedValueOnce(mockedErr);
+            expect(await languageRouteInstance.updateLanguage(mockedDataPL)).toBe(mockedErr);
+        });
     });
 
     describe("deleteLanguageById", () => {
@@ -144,15 +138,15 @@ describe("languageRoute.ts", () =>{
                 status: 200
             });
             expect(await languageRouteInstance.deleteLanguageById("GUID")).toBe(true);
-        })
+        });
 
         test("Failed deleting a language on HTTP 400", async () => {
             let mockedErr = new AxiosError();
             mockedErr.code = "ERR_BAD_REQUEST"; 
-            axios.delete.mockRejectedValueOnce(mockedErr)
+            axios.delete.mockRejectedValueOnce(mockedErr);
 
             expect(await languageRouteInstance.deleteLanguageById("GUID")).toBe(mockedErr);
-        })
+        });
 
     });
-})
+});

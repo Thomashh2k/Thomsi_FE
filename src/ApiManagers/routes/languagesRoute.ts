@@ -23,7 +23,6 @@ export class languagesRoute {
         }
         catch(error) {
             const err = error as AxiosError;
-            console.log(err)
             return err;
         }
     }
@@ -38,7 +37,6 @@ export class languagesRoute {
         }
         catch(error) {
             const err = error as AxiosError;
-            console.log(err)
             return err;
         }
     }
@@ -80,7 +78,6 @@ export class languagesRoute {
             }
         }
         catch(error) {
-            console.log(error)
             const err = error as AxiosError;
             return err;
         } 
