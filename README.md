@@ -15,7 +15,7 @@ It is made with **Vue + Typescript** with additional libraries worth mentioning 
  - [Vue Router](https://router.vuejs.org/)
  - [Axios](https://axios-http.com/)
  - [Monaco Editor](https://microsoft.github.io/monaco-editor/)
-  - [I use a already existing Vue implementation](https://www.npmjs.com/package/monaco-editor-vue3)
+    - [I use a already existing Vue implementation](https://www.npmjs.com/package/monaco-editor-vue3)
 
 ### Unit Testing
  Unit testing is done with [Jest](https://jestjs.io/).
