@@ -1,4 +1,24 @@
-# headlessfe
+# Thomsi
+> **Important Note**
+> This code is only to demonstrate my skills for job interviews, but hopefully, in the future there will be a production ready version of the code.
+
+## About
+This software is a headless CMS which goes in a different way how things work than any other headless CMSs.
+It is made with Vue + Typescript with additional libraries worth mentioning that are listed below:
+
+### UI Frameworks
+ - [BootstrapVue] (https://bootstrap-vue.org/)
+ - [Quasar UI Framework] (https://quasar.dev/)
+ 
+[Pinia] (https://pinia.vuejs.org/)
+[Vue Router] (https://router.vuejs.org/)
+[Axios] (https://axios-http.com/)
+[Monaco Editor] (https://microsoft.github.io/monaco-editor/)
+ - [I use a already existing Vue implementation] (https://www.npmjs.com/package/monaco-editor-vue3)
+
+### Unit Testing
+ Unit testing is done with Jest.
+ 
 
 ## Project setup
 ```
