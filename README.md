@@ -1,6 +1,6 @@
 # Thomsi
 > **Important Note**
-> This code is only to demonstrate my skills for job interviews, but hopefully, in the future there will be a production ready version of this code.
+> This code is only to demonstrate my skills in job interviews, but hopefully, in the future there will be a production ready version of this code.
 
 ## About
 This software is a headless CMS which goes in a different way how things work than any other headless CMSs.
