@@ -11,10 +11,10 @@ It is made with **Vue + Typescript** with additional libraries worth mentioning 
  - [BootstrapVue](https://bootstrap-vue.org/)
  - [Quasar UI Framework](https://quasar.dev/)
 ### Other libraries
- -[Pinia](https://pinia.vuejs.org/)
- -[Vue Router](https://router.vuejs.org/)
- -[Axios](https://axios-http.com/)
- -[Monaco Editor](https://microsoft.github.io/monaco-editor/)
+ - [Pinia](https://pinia.vuejs.org/)
+ - [Vue Router](https://router.vuejs.org/)
+ - [Axios](https://axios-http.com/)
+ - [Monaco Editor](https://microsoft.github.io/monaco-editor/)
   - [I use a already existing Vue implementation](https://www.npmjs.com/package/monaco-editor-vue3)
 
 ### Unit Testing
