@@ -27,3 +27,4 @@ export const useUserInfoStore = defineStore('userInfo', {
     paths: ['user', 'token', 'expiration'],
   },
 })
+export default useUserInfoStore;

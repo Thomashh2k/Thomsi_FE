@@ -29,17 +29,17 @@ const routes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: "language",
+        path: "languages",
         name: 'languagePanel',
         component: () => import(/* webpackChunkName: "about" */ '../views/controlpanelViews/languagePanel.vue'),
       },
       {
-        path: "language/create",
+        path: "languages/create",
         name: 'createLanguage',
         component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/LanguageForm.vue'),
       },
       {
-        path: "language/edit/:id",
+        path: "languages/edit/:id",
         name: 'editLanguage',
         component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/LanguageForm.vue'),
       },

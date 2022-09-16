@@ -8,7 +8,7 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item to="/controlpanel/language">Languages</b-nav-item>
+            <b-nav-item to="/controlpanel/languages">Languages</b-nav-item>
             <b-nav-item to="/controlpanel/pages">Pages</b-nav-item>
             <b-nav-item to="/controlpanel/forms">Custom Forms</b-nav-item>
           </b-navbar-nav>

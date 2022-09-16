@@ -1,5 +1,6 @@
 import { App, Plugin } from 'vue';
 import  axios  from 'axios';
+import { useUserInfoStore } from "@/store";
 import { apiManagerOptions } from './types/apiOptions';
 import { apiManager } from './types/apiManager';
 import { languagesRoute } from './routes/languagesRoute';
@@ -12,6 +13,7 @@ const createApiManager = (apiOptions: apiManagerOptions): apiManager => {
         baseURL: apiOptions.hostname + ':' + apiOptions.port + '/api',
         timeout: 10000,
     })
+
     return {
         hostname: apiOptions.hostname,
         port: apiOptions.port,

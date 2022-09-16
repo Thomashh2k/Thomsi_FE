@@ -10,8 +10,8 @@
         <q-table title="Languages" no-data-label="I didn't find anything for you" :columns="columns" :rows="rows">
           <template v-slot:body-cell-actions="props">
             <q-td>
-              <b-button class="leftActionBtn" variant="warning" :to="'/controlpanel/language/edit/' + props.value"><DeleteIcon fillColor="white"/></b-button>
-              <b-button variant="danger" v-on:click="setDeletionID(props.value)"><LeadPencil/></b-button>
+              <b-button class="leftActionBtn" variant="warning" :to="'/controlpanel/languages/edit/' + props.value"><LeadPencil fillColor="white"/></b-button>
+              <b-button variant="danger" v-on:click="setDeletionID(props.value)"><DeleteIcon fillColor="white"/></b-button>
             </q-td>
           </template>
         </q-table>
@@ -26,9 +26,6 @@
       header-text-variant="light"
       hide-footer
     >
-     
-     
-     
       <p class="modalSubTitle">Are you sure to delete the language?</p>
       <!-- The Label needs a helper function for the deletion text. To make it more simple.-->
       <p>Type in: <b>{{rows.find(el => el.id == deleteForm.id).languageName + '/' + rows.find(el => el.id == deleteForm.id).languageIdentifier }}</b> to delete the language.</p>
@@ -132,8 +129,5 @@ export default defineComponent({
 .leftActionBtn{
   margin-right:15px;
 }
-.modalSubTitle{
-  margin-top: 1.5rem !important;
-  margin-bottom: 0rem !important;
-}
+
 </style>
