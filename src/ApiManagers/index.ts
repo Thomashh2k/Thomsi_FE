@@ -1,6 +1,5 @@
 import { App, Plugin } from 'vue';
 import  axios  from 'axios';
-import { useUserInfoStore } from "@/store";
 import { apiManagerOptions } from './types/apiOptions';
 import { apiManager } from './types/apiManager';
 import { languagesRoute } from './routes/languagesRoute';
@@ -10,7 +9,7 @@ import { authenticationRoute } from './routes/authenticationRoute';
 const createApiManager = (apiOptions: apiManagerOptions): apiManager => {
 
     const axiosInstance = axios.create({
-        baseURL: apiOptions.hostname + ':' + apiOptions.port + '/api',
+        baseURL: apiOptions.hostname + ':' + apiOptions.port + '/api/be',
         timeout: 10000,
     })
 

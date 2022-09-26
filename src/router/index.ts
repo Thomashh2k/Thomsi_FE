@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/controlpanelViews/controlPanel.vue'),
+    component: () => import(/* webpackChunkName: "about" */ '../views/controlPanel.vue'),
     beforeEnter(to, from) {
       //This function only checks if a token exists
       //a better way would be if it also checks the token validity
@@ -28,6 +28,26 @@ const routes: Array<RouteRecordRaw> = [
       return true;
     },
     children: [
+      {
+        path: "main",
+        name: 'mainPanel',
+        component: () => import(/* webpackChunkName: "about" */ '../views/controlpanelViews/mainPanel.vue'),
+      },
+      {
+        path: "custom-forms",
+        name: 'customForms',
+        component: () => import(/* webpackChunkName: "about" */ '../views/controlpanelViews/customFormPanel.vue'),
+      },
+      {
+        path: "custom-forms/create",
+        name: 'createCustomForm',
+        component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/customFormForm.vue'),
+      },
+      {
+        path: "custom-forms/edit/:id",
+        name: 'editCustomForm',
+        component: () => import(/* webpackChunkName: "about" */ '../components/controlPanelControls/customFormForm.vue'),
+      },
       {
         path: "languages",
         name: 'languagePanel',

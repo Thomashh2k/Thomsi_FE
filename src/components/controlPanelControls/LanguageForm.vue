@@ -2,18 +2,18 @@
   <b-row class="createroutepayload">
     <b-col>
 
-      <b-payload @submit="onSubmit" @reset="onReset">
+      <b-form @submit="onSubmit" @reset="onReset">
 
-        <b-payload-group id="input-group-1" label="Language Name:" label-for="input-1" description="German French English Spanish Russian">
-          <b-payload-input id="input-1" v-model="payload.languageName" type="text" placeholder="" required></b-payload-input>
-        </b-payload-group>
+        <b-form-group id="input-group-1" label="Language Name:" label-for="input-1" description="German French English Spanish Russian">
+          <b-form-input id="input-1" v-model="payload.languageName" type="text" placeholder="" required></b-form-input>
+        </b-form-group>
 
-        <b-payload-group id="input-group-2" label="Language Identifier:" label-for="input-2" description="de-AT de-DE en-GB en-US">
-          <b-payload-input id="input-1" v-model="payload.languageIdentifier" type="text" placeholder="" required></b-payload-input>
-        </b-payload-group>
+        <b-form-group id="input-group-2" label="Language Identifier:" label-for="input-2" description="de-AT de-DE en-GB en-US">
+          <b-form-input id="input-1" v-model="payload.languageIdentifier" type="text" placeholder="" required></b-form-input>
+        </b-form-group>
 
         <b-button type="submit" variant="primary">Submit</b-button>
-      </b-payload>
+      </b-form>
 
     </b-col>
   </b-row>
@@ -21,7 +21,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { postLanguagePL } from '@/payloads/postLanguagePL';
 import { lang } from '@/dbTables';
 
 export default defineComponent({
@@ -47,6 +46,7 @@ export default defineComponent({
     }
   },
   methods: {
+    // eslint-disable-next-line 
     async onSubmit(event: any) {
       event.preventDefault()
       if(this.payload.id != undefined) {
@@ -63,6 +63,7 @@ export default defineComponent({
       }
 
     },
+    // eslint-disable-next-line 
     onReset(event: any) {
       event.preventDefault()
       // Reset our payload values

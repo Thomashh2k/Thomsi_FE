@@ -1,7 +1,6 @@
 import { postLanguagePL } from "@/payloads/postLanguagePL";
 import { AxiosError, AxiosInstance } from "axios"
 import { useUserInfoStore } from "@/store";
-import { StoreDefinition } from "pinia";
 import { lang } from "@/dbTables";
 
 export class languagesRoute {

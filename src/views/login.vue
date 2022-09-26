@@ -55,7 +55,7 @@ export default defineComponent({
     async onSubmit() {
       let isLoginSuccessful = await this.$apiManager.authentication.login(this.form);
       if(isLoginSuccessful)
-        this.$router.push("/controlpanel")
+        this.$router.push("/controlpanel/main")
     }
   }
 });

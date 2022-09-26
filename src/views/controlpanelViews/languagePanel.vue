@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-col>
-      <b-button to="/controlpanel/language/create">Create</b-button>
+      <b-button to="/controlpanel/languages/create">Create</b-button>
     </b-col>
   </b-row>
   <b-row>

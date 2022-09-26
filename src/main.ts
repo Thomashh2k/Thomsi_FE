@@ -27,7 +27,6 @@ pinia.use(piniaPluginPersistedstate)
 app.use(Quasar, quasarUserOptions)
 app.use(pinia)
 app.use(router)
-const userInfoStore = useUserInfoStore(pinia)
 app.use(ApiManagerPlugin, apiOptions)   
 app.use(BootstrapVue3)
 router.isReady().then(() => {

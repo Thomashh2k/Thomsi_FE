@@ -2,7 +2,7 @@
   <b-row class="controlpanel">
     <b-col>
       <b-navbar toggleable="lg" type="dark" variant="secondary">
-        <b-navbar-brand to="/controlpanel">ControlPanel</b-navbar-brand>
+        <b-navbar-brand to="/controlpanel/main">ControlPanel</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -10,7 +10,7 @@
           <b-navbar-nav>
             <b-nav-item to="/controlpanel/languages">Languages</b-nav-item>
             <b-nav-item to="/controlpanel/pages">Pages</b-nav-item>
-            <b-nav-item to="/controlpanel/forms">Custom Forms</b-nav-item>
+            <b-nav-item to="/controlpanel/custom-forms">Custom Forms</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
         <b-button variant="danger" @click="logout">Logout</b-button>

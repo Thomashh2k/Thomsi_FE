@@ -2,7 +2,6 @@ import { AxiosInstance, AxiosError } from "axios";
 import { postPagePL } from "@/payloads/postPagePL";
 import { page } from "@/dbTables";
 import { useUserInfoStore } from "@/store";
-import { Store } from "pinia";
 
 export class pageRoute {
 
