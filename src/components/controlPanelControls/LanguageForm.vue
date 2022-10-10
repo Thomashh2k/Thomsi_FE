@@ -20,23 +20,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { lang } from '@/dbTables';
+import { defineComponent } from 'vue'
+import { lang } from '@/dbTables'
 
 export default defineComponent({
   name: 'LanguageForm',
   components: {
 
   },
-  async created() {
-    if(this.payload.id != undefined){
-      let data = await this.$apiManager.lang.getSingleLanguageByID(this.payload.id);
-      if(data != undefined){
+  async created () {
+    if (this.payload.id !== undefined) {
+      const data = await this.$apiManager.lang.getSingleLanguageByID(this.payload.id)
+      if (data !== undefined) {
         this.payload = data
       }
     }
   },
-  data() {
+  data () {
     return {
       payload: {
         id: this.$route.params.id, // This id is only used when a lang is edited
@@ -46,24 +46,20 @@ export default defineComponent({
     }
   },
   methods: {
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
     async onSubmit(event: any) {
       event.preventDefault()
-      if(this.payload.id != undefined) {
-        //Updates a lang
-        let data = await this.$apiManager.lang.updateLanguage(this.payload);
-        if(data != undefined)
-          this.$router.go(-1);
-      }
-      else{
+      if (this.payload.id !== undefined) {
+        // Updates a lang
+        const data = await this.$apiManager.lang.updateLanguage(this.payload)
+        if (data !== undefined) { this.$router.go(-1) }
+      } else {
         // Creates a lang
-        let data = await this.$apiManager.lang.postLanguage(this.payload);
-        if(data != undefined)
-         this.$router.go(-1);
+        const data = await this.$apiManager.lang.postLanguage(this.payload)
+        if (data !== undefined) { this.$router.go(-1) }
       }
-
     },
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
     onReset(event: any) {
       event.preventDefault()
       // Reset our payload values
@@ -71,5 +67,5 @@ export default defineComponent({
       this.payload.languageIdentifier = ''
     }
   }
-});
+})
 </script>

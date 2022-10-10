@@ -38,17 +38,25 @@
     "@vue/cli-plugin-unit-jest": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-standard": "^6.1.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/test-utils": "^2.0.0-0",
     "@vue/vue3-jest": "^27.0.0-alpha.1",
     "babel-jest": "^27.0.6",
     "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^8.0.3",
     "jest": "^27.0.5",
     "jest-mock-axios": "^4.7.0-beta",
+    "lint-staged": "^11.1.2",
     "ts-jest": "^27.0.4",
     "typescript": "~4.5.5",
     "vue-cli-plugin-quasar": "~5.0.1",
     "webpack": "5.74.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   }
 }

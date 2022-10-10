@@ -21,25 +21,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import {useUserInfoStore} from "@/store"
+import { defineComponent } from 'vue'
+import { useUserInfoStore } from '@/store'
 
 export default defineComponent({
   name: 'controlPanel',
   components: {
 
   },
-  setup(){
-    const userInfoStore = useUserInfoStore();
+  setup () {
+    const userInfoStore = useUserInfoStore()
     return { userInfoStore }
   },
-  methods:{
-    logout(){
-      this.userInfoStore.setToken("");
-      this.userInfoStore.setExpiration(null);
-      this.userInfoStore.setUser(null);
-      this.$router.push("/");
+  methods: {
+    logout () {
+      this.userInfoStore.setToken('')
+      this.userInfoStore.setExpiration(null)
+      this.userInfoStore.setUser(null)
+      this.$router.push('/')
     }
   }
-});
+})
 </script>

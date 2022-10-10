@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { aspNetUser } from '@/dbTables'
 
-
 // You can name the return value of `defineStore()` anything you want, but it's best to use the name of the store and surround it with `use` and `Store` (e.g. `useUserStore`, `useCartStore`, `useProductStore`)
 // the first argument is a unique id of the store across your application
 export const useUserInfoStore = defineStore('userInfo', {
@@ -9,22 +8,24 @@ export const useUserInfoStore = defineStore('userInfo', {
   getters: {
     getUser: (state) => state.user,
     getToken: (state) => state.token,
-    getExpiration: (state) => state.expiration,
+    getExpiration: (state) => state.expiration
   },
   actions: {
-    setUser(user: aspNetUser) {
+    setUser (user: aspNetUser) {
       this.user = user
     },
-    setToken(token: string) {
+    setToken (token: string) {
       this.token = token
     },
-    setExpiration(expiration: Date) {
+    setExpiration (expiration: Date) {
       this.expiration = expiration
-    },
+    }
   },
   persist: {
-    storage: sessionStorage,
-    paths: ['user', 'token', 'expiration'],
-  },
+    storage: localStorage,
+    paths: ['user', 'token', 'expiration']
+  }
 })
-export default useUserInfoStore;
+
+
+export default useUserInfoStore

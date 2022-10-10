@@ -1,4 +1,4 @@
-import { lang } from "./Lang";
+import { lang } from './Lang'
 
 export interface page {
     id: string,

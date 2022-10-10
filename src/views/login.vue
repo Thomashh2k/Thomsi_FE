@@ -16,7 +16,7 @@
                required
              ></b-form-input>
            </b-form-group>
-         
+
            <b-form-group id="input-group-password" label="Password:" label-for="input-2">
              <b-form-input
                id="input-2"
@@ -34,29 +34,27 @@
 </template>
 
 <script lang="ts">
-import { loginPL } from '@/payloads/loginPL';
-import { defineComponent } from 'vue';
-import {useUserInfoStore} from "../store"
+import { loginPL } from '@/payloads/loginPL'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'loginView',
   components: {
 
   },
-  data() {
+  data () {
     return {
       form: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       } as loginPL
     }
   },
   methods: {
-    async onSubmit() {
-      let isLoginSuccessful = await this.$apiManager.authentication.login(this.form);
-      if(isLoginSuccessful)
-        this.$router.push("/controlpanel/main")
+    async onSubmit () {
+      const isLoginSuccessful = await this.$apiManager.authentication.login(this.form)
+      if (isLoginSuccessful) { this.$router.push('/controlpanel/main') }
     }
   }
-});
+})
 </script>

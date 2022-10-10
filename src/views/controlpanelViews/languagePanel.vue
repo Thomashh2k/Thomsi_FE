@@ -21,7 +21,7 @@
       v-model="deleteForm.showDeletionModal"
       id="lang-deletion-modal"
       title="Deletion"
-      header-bg-variant="danger" 
+      header-bg-variant="danger"
       lazy
       header-text-variant="light"
       hide-footer
@@ -52,10 +52,10 @@
 </template>
 
 <script lang="ts">
-import { lang } from '@/dbTables';
-import { defineComponent } from 'vue';
-import DeleteIcon from 'vue-material-design-icons/Delete.vue';
-import LeadPencil from 'vue-material-design-icons/LeadPencil.vue';
+import { lang } from '@/dbTables'
+import { defineComponent } from 'vue'
+import DeleteIcon from 'vue-material-design-icons/Delete.vue'
+import LeadPencil from 'vue-material-design-icons/LeadPencil.vue'
 
 export default defineComponent({
   name: 'languagePanel',
@@ -63,67 +63,66 @@ export default defineComponent({
     DeleteIcon,
     LeadPencil
   },
-  async beforeCreate() {
-    let data = await this.$apiManager.lang.getLanguage(1, 1, 10);
-    this.rows = data;
+  async beforeCreate () {
+    const data = await this.$apiManager.lang.getLanguage(1, 1, 10)
+    this.rows = data
   },
-  methods:{
-    setDeletionID(id: string){
-      this.deleteForm.id = id;
-      this.deleteForm.showDeletionModal = !this.deleteForm.showDeletionModal;
+  methods: {
+    setDeletionID (id: string) {
+      this.deleteForm.id = id
+      this.deleteForm.showDeletionModal = !this.deleteForm.showDeletionModal
     },
-    async deleteLangClickEvent(){
-      var lang = this.rows.find(el => el.id == this.deleteForm.id) as lang;
+    async deleteLangClickEvent () {
+      const lang = this.rows.find(el => el.id == this.deleteForm.id) as lang
 
-      if(this.deleteForm.deleteText == lang.languageName + '/' + lang.languageIdentifier){
-        let isSuccessfully = await this.$apiManager.lang.deleteLanguageById(this.deleteForm.id);
-        if(isSuccessfully){
-          this.$router.go();
+      if (this.deleteForm.deleteText == lang.languageName + '/' + lang.languageIdentifier) {
+        const isSuccessfully = await this.$apiManager.lang.deleteLanguageById(this.deleteForm.id)
+        if (isSuccessfully) {
+          this.$router.go()
         }
-      }
-      else{
-        this.deleteForm.deleteText = "Wrong Input!!!"
+      } else {
+        this.deleteForm.deleteText = 'Wrong Input!!!'
       }
     }
   },
-  data(){
+  data () {
     return {
-        rows: [],
-        deleteForm:{
-          showDeletionModal: false,
-          id: "",
-          deleteText: ""
+      rows: [],
+      deleteForm: {
+        showDeletionModal: false,
+        id: '',
+        deleteText: ''
+      },
+      columns: [
+        {
+          name: 'guid',
+          label: 'ID',
+          field: 'id',
+          align: 'left'
         },
-        columns: [      
-            {
-                name: 'guid',
-                label: 'ID',
-                field: 'id',
-                align: 'left'
-            },
-            {
-                name: 'langName',
-                label: 'Language',
-                align: 'left',
-                field: 'languageName',
-            },            
-            {
-                name: 'langIdent',
-                label: 'LanguageIdentifier',
-                align: 'left',
-                field: 'languageIdentifier',
-            },
-            {
-                name: 'actions',
-                label: 'Actions',
-                field: 'id',
-                align: 'left'
+        {
+          name: 'langName',
+          label: 'Language',
+          align: 'left',
+          field: 'languageName'
+        },
+        {
+          name: 'langIdent',
+          label: 'LanguageIdentifier',
+          align: 'left',
+          field: 'languageIdentifier'
+        },
+        {
+          name: 'actions',
+          label: 'Actions',
+          field: 'id',
+          align: 'left'
 
-            },
-        ]
+        }
+      ]
     }
   }
-});
+})
 </script>
 <style>
 .leftActionBtn{

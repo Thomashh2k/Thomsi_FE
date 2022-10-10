@@ -12,6 +12,9 @@
                 <b>Users</b>
             </b-nav-item>
             <b-nav-item class="sidenav-link" to="">
+                <b>Roles</b>
+            </b-nav-item>
+            <b-nav-item class="sidenav-link" to="">
                 <b>Settings</b>
             </b-nav-item>
         </b-nav>
@@ -21,29 +24,29 @@
       </b-col>
     </b-row>
 </template>
-  
+
 <script lang="ts">
-    import { defineComponent } from 'vue';
-    import {useUserInfoStore} from "@/store"
+import { defineComponent } from 'vue'
+import { useUserInfoStore } from '@/store'
 
-    export default defineComponent({
-        name: 'controlPanel',
-        components: {
+export default defineComponent({
+  name: 'MainPanel',
+  components: {
 
-        },
-        setup(){
-            const userInfoStore = useUserInfoStore();
-            return { userInfoStore }
-        },
-        methods:{
-            logout(){
-            this.userInfoStore.setToken("");
-            this.userInfoStore.setExpiration(null);
-            this.userInfoStore.setUser(null);
-            this.$router.push("/");
-            }
-        }
-    });
+  },
+  setup () {
+    const userInfoStore = useUserInfoStore()
+    return { userInfoStore }
+  },
+  methods: {
+    logout () {
+      this.userInfoStore.setToken('')
+      this.userInfoStore.setExpiration(null)
+      this.userInfoStore.setUser(null)
+      this.$router.push('/')
+    }
+  }
+})
 </script>
 <style>
 
@@ -55,6 +58,7 @@
     top: 56px; /* Stay at the top */
     left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 5%;
 }
 .nav-link{
     color: black;

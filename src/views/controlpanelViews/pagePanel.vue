@@ -26,7 +26,7 @@
       v-model="deleteForm.showDeletionModal"
       id="lang-deletion-modal"
       title="Deletion"
-      header-bg-variant="danger" 
+      header-bg-variant="danger"
       lazy
       header-text-variant="light"
       hide-footer
@@ -57,47 +57,46 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { page } from '@/dbTables';
-import DeleteIcon from 'vue-material-design-icons/Delete.vue';
-import LeadPencil from 'vue-material-design-icons/LeadPencil.vue';
+import { defineComponent } from 'vue'
+import { page } from '@/dbTables'
+import DeleteIcon from 'vue-material-design-icons/Delete.vue'
+import LeadPencil from 'vue-material-design-icons/LeadPencil.vue'
 
 export default defineComponent({
-  name: 'pagePanel',
+  name: 'PagePanel',
   components: {
     DeleteIcon,
     LeadPencil
   },
-  async beforeMount() {
-    let data = await this.$apiManager.page.getPagesWithoutBody(1, 1, 10);
-    this.rows = data;
+  async beforeMount () {
+    const data = await this.$apiManager.page.getPagesWithoutBody(1, 1, 10)
+    this.rows = data
   },
-  methods:{
-    setDeletionID(id: string){
-      debugger;
-      this.deleteForm.id = id;
-      this.deleteForm.showDeletionModal = !this.deleteForm.showDeletionModal;
+  methods: {
+    setDeletionID (id: string) {
+      debugger
+      this.deleteForm.id = id
+      this.deleteForm.showDeletionModal = !this.deleteForm.showDeletionModal
     },
-    async deletePageClickEvent(){
-      var page = this.rows.find(el => el.id == this.deleteForm.id) as page;
-      if(this.deleteForm.deleteText == page.lang.languageIdentifier + page.route){
-        let isSuccessfully = await this.$apiManager.page.deletePageById(this.deleteForm.id);
-        if(isSuccessfully){
-          this.$router.go();
+    async deletePageClickEvent () {
+      const page = this.rows.find(el => el.id == this.deleteForm.id) as page
+      if (this.deleteForm.deleteText == page.lang.languageIdentifier + page.route) {
+        const isSuccessfully = await this.$apiManager.page.deletePageById(this.deleteForm.id)
+        if (isSuccessfully) {
+          this.$router.go()
         }
-      }
-      else{
-        this.deleteForm.deleteText = "Wrong Input!!!"
+      } else {
+        this.deleteForm.deleteText = 'Wrong Input!!!'
       }
     }
   },
-  data(){
+  data () {
     return {
       rows: [] as page[],
-      deleteForm:{
+      deleteForm: {
         showDeletionModal: false,
-        id: "",
-        deleteText: ""
+        id: '',
+        deleteText: ''
       },
       columns: [
         {
@@ -129,12 +128,12 @@ export default defineComponent({
           label: 'Actions',
           field: 'id',
           align: 'left'
-        },
+        }
       ]
 
     }
   }
-});
+})
 </script>
 <style>
 .leftActionBtn{

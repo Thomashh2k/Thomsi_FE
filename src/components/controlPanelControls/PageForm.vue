@@ -44,7 +44,6 @@
           v-model:value="payload.body"
         ></MonacoEditor>
 
-
       </div>
       <div class="col-3">
         <q-toggle
@@ -56,37 +55,36 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { postPagePL } from '@/payloads/postPagePL';
+import { defineComponent } from 'vue'
+import { postPagePL } from '@/payloads/postPagePL'
 import MonacoEditor from 'monaco-editor-vue3'
 
 export default defineComponent({
-  name: 'createPageForm',
+  name: 'CreatePageForm',
   components: {
     MonacoEditor
   },
-  async created() {
-    debugger;
-    let data = await this.$apiManager.lang.getLanguage(1, 1, 5)
-    for(var i = 0; i < data.length; i++) {
-      this.languages.push({text: data[i].languageIdentifier, value: data[i].id, disabled: false});
+  async created () {
+    debugger
+    const data = await this.$apiManager.lang.getLanguage(1, 1, 5)
+    for (let i = 0; i < data.length; i++) {
+      this.languages.push({ text: data[i].languageIdentifier, value: data[i].id, disabled: false })
     }
 
-    if(this.payload.id != undefined){
-      let data = await this.$apiManager.page.getSinglePageByID(this.payload.id);
-      if(data != undefined){
+    if (this.payload.id !== undefined) {
+      const data = await this.$apiManager.page.getSinglePageByID(this.payload.id)
+      if (data !== undefined) {
         this.payload = data
       }
     }
-    
   },
-  mounted() {
-    this.editorWidth = this.$refs.editorCol.clientHeight;
-    this.editorHeigth = this.$refs.editorCol.clientWidth;
+  mounted () {
+    this.editorWidth = this.$refs.editorCol.clientHeight
+    this.editorHeigth = this.$refs.editorCol.clientWidth
   },
-  data() {
+  data () {
     return {
-      editorWidth:972,
+      editorWidth: 972,
       editorHeigth: 800,
       windowHeigth: window.innerHeight - 150,
       isMonacoEditor: true,
@@ -101,28 +99,25 @@ export default defineComponent({
     }
   },
   methods: {
-    async onSubmit(event: any) {
+    async onSubmit (event: any) {
       event.preventDefault()
-      debugger;
-      if(this.payload.id != undefined) {
-        //Updates a lang
-        let data = await this.$apiManager.page.updatePage(this.payload);
-        if(data != undefined)
-          this.$router.go(-1);
-      }
-      else{
+      debugger
+      if (this.payload.id !== undefined) {
+        // Updates a lang
+        const data = await this.$apiManager.page.updatePage(this.payload)
+        if (data !== undefined) { this.$router.go(-1) }
+      } else {
         // Creates a lang
-        let data = await this.$apiManager.page.postPage(this.payload);
-        if(data != undefined)
-          this.$router.go(-1);
+        const data = await this.$apiManager.page.postPage(this.payload)
+        if (data !== undefined) { this.$router.go(-1) }
       }
     },
-    onReset(event: any) {
+    onReset (event: any) {
       event.preventDefault()
       // Reset our form values
       this.form.routeName = ''
       this.form.route = ''
-    },
+    }
   }
-});
+})
 </script>

@@ -1,5 +1,5 @@
 const { defineConfig } = require('@vue/cli-service')
-const path = require('path');
+const path = require('path')
 const MonacoEditorWebpackPlugin = require('monaco-editor-webpack-plugin')
 
 module.exports = defineConfig({
@@ -10,7 +10,7 @@ module.exports = defineConfig({
   configureWebpack: {
 
     plugins: [
-      //new MonacoEditorWebpackPlugin()
+      // new MonacoEditorWebpackPlugin()
     ]
   },
 
