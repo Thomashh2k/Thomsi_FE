@@ -18,7 +18,7 @@ export class customFormRoute {
     public async postCustomForm(data: customFormPL): Promise<boolean | AxiosError> {
         try{
             this.axiosInstance.defaults.headers.common.Authorization = 'Bearer ' + this.userInfoStore.getToken;
-            const resp = await this.axiosInstance.post("/customform", data);
+            const resp = await this.axiosInstance.post("/customforms", data);
             if(resp.status == 200) {
                 return true
             }

@@ -33,7 +33,7 @@
     >
       <p class="modalSubTitle">Are you sure to delete the language?</p>
       <!-- The Label needs a helper function for the deletion text. To make it more simple.-->
-      <p>Type in: <b>{{rows.find(el => el.id == deleteForm.id).lang.languageIdentifier + rows.find(el => el.id == deleteForm.id).route }}</b> to delete the language.</p>
+      <p>Type in: <b>{{ deleteLabel }}</b> to delete the language.</p>
       <b-form>
         <b-form-group
           id="input-group-forDeletion"
@@ -72,6 +72,14 @@ export default defineComponent({
     const data = await this.$apiManager.page.getPagesWithoutBody(1, 1, 10)
     this.rows = data
   },
+  computed: {
+    deleteLabel() {
+      debugger
+      var title = this.rows.find(el => el.id == this.deleteForm.id).title
+      var route = this.rows.find(el => el.id == this.deleteForm.id).route
+      return title + route
+    }
+  },
   methods: {
     setDeletionID (id: string) {
       debugger
@@ -80,7 +88,7 @@ export default defineComponent({
     },
     async deletePageClickEvent () {
       const page = this.rows.find(el => el.id == this.deleteForm.id) as page
-      if (this.deleteForm.deleteText == page.lang.languageIdentifier + page.route) {
+      if (this.deleteForm.deleteText == page.title + page.route) {
         const isSuccessfully = await this.$apiManager.page.deletePageById(this.deleteForm.id)
         if (isSuccessfully) {
           this.$router.go()
@@ -115,12 +123,6 @@ export default defineComponent({
           name: 'route',
           label: 'Route',
           field: 'route',
-          align: 'left'
-        },
-        {
-          name: 'lang',
-          label: 'Language',
-          field: 'languageIdentifier',
           align: 'left'
         },
         {

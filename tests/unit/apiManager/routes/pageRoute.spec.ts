@@ -44,29 +44,21 @@ describe('pageRoute.ts', () => {
           id: '{GUID}',
           title: 'TestTitle',
           route: '/testtitle',
-          body: '<p>Test body</p>',
-          lang: { id: '{GUID}', languageName: 'German', languageIdentifier: 'de-DE' }
         },
         {
           id: '{GUID}',
           title: 'TestTitle',
           route: '/testtitle',
-          body: '<p>Test body</p>',
-          lang: { id: '{GUID}', languageName: 'German', languageIdentifier: 'de-DE' }
         },
         {
           id: '{GUID}',
           title: 'TestTitle',
           route: '/testtitle',
-          body: '<p>Test body</p>',
-          lang: { id: '{GUID}', languageName: 'German', languageIdentifier: 'de-DE' }
         },
         {
           id: '{GUID}',
           title: 'TestTitle',
           route: '/testtitle',
-          body: '<p>Test body</p>',
-          lang: { id: '{GUID}', languageName: 'German', languageIdentifier: 'de-DE' }
         }
       ] as page[]
 
@@ -99,14 +91,14 @@ describe('pageRoute.ts', () => {
           status: 200,
           data: mockedRespData
         })
-        expect(await pageRouteInstance.getSinglePageByID('GUID')).toBe(mockedRespData)
+        expect(await pageRouteInstance.getSinglePageByID('GUID', 'GUID')).toBe(mockedRespData)
       })
 
       test('Failed get a page with id on HTTP 400', async () => {
         const mockedErr = new AxiosError()
         mockedErr.code = 'ERR_BAD_REQUEST'
         axios.get.mockRejectedValueOnce(mockedErr)
-        expect(await pageRouteInstance.getSinglePageByID('{GUID}')).toBe(mockedErr)
+        expect(await pageRouteInstance.getSinglePageByID('{GUID}', 'GUID')).toBe(mockedErr)
       })
     })
 

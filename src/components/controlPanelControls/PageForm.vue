@@ -66,15 +66,17 @@ export default defineComponent({
   },
   async created () {
     debugger
-    const data = await this.$apiManager.lang.getLanguage(1, 1, 5)
-    for (let i = 0; i < data.length; i++) {
-      this.languages.push({ text: data[i].languageIdentifier, value: data[i].id, disabled: false })
+    const langData = await this.$apiManager.lang.getLanguage(1, 1, 5)
+    for (let i = 0; i < langData.length; i++) {
+      this.languages.push({ text: langData[i].languageIdentifier, value: langData[i].id, disabled: false })
     }
 
     if (this.payload.id !== undefined) {
-      const data = await this.$apiManager.page.getSinglePageByID(this.payload.id)
-      if (data !== undefined) {
-        this.payload = data
+      const pageData = await this.$apiManager.page.getSinglePageByID(this.payload.id, langData[0].id)
+      if (pageData !== undefined) {
+        this.payload = pageData.page
+        this.payload.body = pageData.actualpage.body
+        this.payload.langId = pageData.actualPage.langId
       }
     }
   },

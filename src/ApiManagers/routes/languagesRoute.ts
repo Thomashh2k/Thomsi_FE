@@ -30,6 +30,7 @@ export class languagesRoute {
 
     public async getLanguage (count: number, pageIndex: number, pageSize: number): Promise<lang[] | AxiosError> {
       try {
+        debugger
         const resp = await this.axiosInstance.get('/lang?=count' + count + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize)
         if (resp.status == 200) {
           return resp.data

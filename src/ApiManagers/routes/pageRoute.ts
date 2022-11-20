@@ -41,9 +41,9 @@ export class pageRoute {
       }
     }
 
-    public async getSinglePageByID (id: string): Promise<page | AxiosError> {
+    public async getSinglePageByID (id: string, pageId: string): Promise<page | AxiosError> {
       try {
-        const resp = await this.axiosInstance.get('/pages/' + id)
+        const resp = await this.axiosInstance.get('/pages/' + pageId + '/' + id)
         if (resp.status == 200) {
           return resp.data
         }
